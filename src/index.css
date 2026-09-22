@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-red: #c41d30;
+  --color-brand-blue: #15315a;
+  --font-sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+:root.dark {
+  scrollbar-color: #475569 #0f172a;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f8fafc;
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+:root.dark body {
+  background-color: #0f172a;
+  background-image: radial-gradient(#334155 1px, transparent 1px);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 10px;
+  border: 2px solid #f8fafc;
+}
+:root.dark ::-webkit-scrollbar-thumb {
+  background-color: #475569;
+  border: 2px solid #0f172a;
+}
+::-webkit-scrollbar-button {
+  display: none !important;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.custom-scrollbar {
+  scrollbar-width: none;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.leaflet-container {
+  position: relative;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 380px;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  border-radius: 2rem;
+  font-family: var(--font-sans);
+  background-color: #f0f4f8;
+}
+
+@media (min-width: 768px) {
+  .leaflet-container {
+    min-height: 430px;
+    border-radius: 2.25rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .leaflet-container {
+    min-height: 330px;
+  }
+}
+
+:root.dark .leaflet-container {
+  background-color: #1e293b;
+}
+
+.leaflet-pane,
+.leaflet-tile-pane,
+.leaflet-layer,
+.leaflet-tile-container,
+.leaflet-map-pane {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.leaflet-control-container {
+  position: relative;
+  z-index: 10;
+}
+
+.leaflet-tiles {
+  filter: brightness(0.95) contrast(1.1);
+}
+
+:root.dark .leaflet-tiles {
+  filter: invert(0.8) hue-rotate(200deg) brightness(0.9) contrast(1.1);
+}
+
+.pharmacy-marker {
+  filter: drop-shadow(0 2px 8px rgba(196, 29, 48, 0.3));
+}
+
+.pharmacy-marker:hover {
+  filter: drop-shadow(0 4px 12px rgba(196, 29, 48, 0.5));
+}
+
+.pharmacy-popup .leaflet-popup-content-wrapper {
+  background-color: white;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+:root.dark .pharmacy-popup .leaflet-popup-content-wrapper {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+.pharmacy-popup .leaflet-popup-content {
+  margin: 0;
+  padding: 0;
+}
+
+.pharmacy-popup .leaflet-popup-tip {
+  background-color: white;
+  border-color: white;
+}
+
+:root.dark .pharmacy-popup .leaflet-popup-tip {
+  background-color: #1e293b;
+  border-color: #1e293b;
+}
+
+.leaflet-control-zoom {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  background-color: white;
+  border: none;
+  font-weight: 600;
+  color: #15315a;
+  transition: all 0.2s;
+}
+
+:root.dark .leaflet-control-zoom-in,
+:root.dark .leaflet-control-zoom-out {
+  background-color: #334155;
+  color: white;
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+  background-color: #15315a;
+  color: white;
+}
+
+:root.dark .leaflet-control-zoom-in:hover,
+:root.dark .leaflet-control-zoom-out:hover {
+  background-color: #0f172a;
+  color: white;
+}
+
+.support-cta {
+  transition: transform 220ms cubic-bezier(.22,1,.36,1), box-shadow 220ms ease, background 280ms ease;
+}
+
+.support-cta:focus {
+  outline: none;
+  box-shadow: 0 12px 30px rgba(2,6,23,0.28);
+}
+
+.support-cta-shimmer {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 160px;
+  background: linear-gradient(120deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.02) 100%);
+  transform: translateX(-100%);
+  will-change: transform;
+  animation: shimmer 2.8s linear infinite;
+  filter: blur(8px);
+  opacity: 0.9;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-120%); }
+  50% { transform: translateX(120%); }
+  100% { transform: translateX(260%); }
+}
+
+@keyframes ctaPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.cta-icon {
+  will-change: transform;
+  animation: ctaPulse 3s ease-in-out infinite;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.support-cta:hover .cta-icon {
+  animation-play-state: paused;
+}
+
+.cta-icon > svg {
+  transition: transform 220ms cubic-bezier(.22,1,.36,1);
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
